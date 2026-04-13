@@ -11,7 +11,7 @@ def soma_calc(inp):
             lista[0] = lista[0] - lista[2]
             lista.pop(1)
             lista.pop(1)
-    return lista[0]
+    return lista
 
 def mul_calc(inp):
     lista = inp.copy()
@@ -34,8 +34,9 @@ def mul_calc(inp):
 def passer_calc(inp):
     txt = inp.strip()
     txt = f'{txt}_'
-    opts = '+-/*_'
+    opts = '+-/*_.'
     buffer = ''
+    flag_ponto = False
     lista = []
     for i in range(0, len(txt)):
         if len(txt) == 1:
@@ -51,6 +52,11 @@ def passer_calc(inp):
                 return False
             elif txt[i] in '+/*' and buffer == '':
                 return False
+            elif txt[i] in '.':
+                if flag_ponto == True:
+                    return False
+                flag_ponto = True
+                buffer += txt[i]
             else:
                 try:
                     num = float(buffer)
@@ -58,11 +64,15 @@ def passer_calc(inp):
                     return False
                 lista.append(num)
                 buffer = ''
+                flag_ponto = False
+                flag_ponto
                 if txt[i] != '_':
                     lista.append(txt[i])
     return lista
 
 inp = input('conta: ')
 res = passer_calc(inp)
+res = mul_calc(res)
+res = soma_calc(res)
 print(res)
 

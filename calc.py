@@ -5,6 +5,6 @@ while True:
         break
     res = op.passer_calc(inp)
     res = op.mul_calc(res)
-    res = op.soma_calc(inp)
+    res = op.soma_calc(res)
     print(res)
     
