@@ -34,19 +34,32 @@ def mul_calc(inp):
 def passer_calc(inp):
     txt = inp.strip()
     txt = f'{txt}_'
+    opts = '+-/*_'
     buffer = ''
     lista = []
-    #breakpoint()
     for i in range(0, len(txt)):
-        if len(txt) == 1:       #erros de comeco e fim do input
+        if len(txt) == 1:
             return False
-        if txt[i].isnumeric():
+        elif txt[i].isnumeric() or txt[i] in '-' and buffer == '' and i != (len(txt)-2):
             buffer += txt[i]
-        elif txt[i] in '+-*/_':
-            lista.append(buffer)
-            buffer = ''
-            if txt[i] not in '_':
-                lista.append(txt[i])
+        elif txt[i] in opts:
+            if txt[i] not in '-' and i == 0: 
+                return False
+            elif txt[i] in '_' and i != (len(txt)-1):
+                return False
+            elif txt[i] in '+/*-' and i == (len(txt)-2):
+                return False
+            elif txt[i] in '+/*' and buffer == '':
+                return False
+            else:
+                try:
+                    num = float(buffer)
+                except:
+                    return False
+                lista.append(num)
+                buffer = ''
+                if txt[i] != '_':
+                    lista.append(txt[i])
     return lista
 
 inp = input('conta: ')

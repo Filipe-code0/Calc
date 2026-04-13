@@ -3,8 +3,8 @@ while True:
     inp = input('Conta:')
     if inp in 'Nn':
         break
-    #passer_calc(inp)
-    res = op.mul_calc(inp)
+    res = op.passer_calc(inp)
+    res = op.mul_calc(res)
     res = op.soma_calc(inp)
     print(res)
     
