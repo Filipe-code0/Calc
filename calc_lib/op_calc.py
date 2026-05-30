@@ -70,9 +70,3 @@ def passer_calc(inp):
                     lista.append(txt[i])
     return lista
 
-inp = input('conta: ')
-res = passer_calc(inp)
-res = mul_calc(res)
-res = soma_calc(res)
-print(res)
-
