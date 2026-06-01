@@ -68,5 +68,31 @@ def passer_calc(inp):
                 flag_ponto
                 if txt[i] != '_':
                     lista.append(txt[i])
-    return lista
+    if prioridade_calc(lista):
+        return lista
+    else:
+        return False
+
+def prioridade_calc(lista):
+    prioridade_ini = ['(','[','{']
+    prioridade_fim = [')',']','}']
+    pilha = []
+    contador = 0
+    for i in lista:
+        if i in prioridade_ini:
+            pilha.append(i)
+            contador += 1
+        elif i in prioridade_fim:
+            if len(pilha) == 0:
+                return False
+            item = pilha.pop()
+            pos1 = prioridade_ini.index(item)
+            pos2 = prioridade_fim.index(i)
+            contador -= 1
+            if pos1 != pos2:
+                return False
+    if contador != 0:
+        return False
+    else:
+        return True
 
