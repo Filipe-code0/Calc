@@ -35,7 +35,7 @@ def passer_calc(inp):
     txt = inp.strip()
     txt = f'{txt}_'
     opts = '+-/*_.'
-    buffer = ''
+    buffer = anterior = ''
     flag_ponto = False
     lista = []
     for i in range(0, len(txt)):
@@ -53,7 +53,7 @@ def passer_calc(inp):
             elif txt[i] in '+/*' and buffer == '':
                 return False
             elif txt[i] in '.':
-                if flag_ponto == True:
+                if flag_ponto == True or txt[i-1] in opts:
                     return False
                 flag_ponto = True
                 buffer += txt[i]
@@ -65,9 +65,12 @@ def passer_calc(inp):
                 lista.append(num)
                 buffer = ''
                 flag_ponto = False
-                flag_ponto
                 if txt[i] != '_':
                     lista.append(txt[i])
+        elif txt[i] == ' ':
+            continue
+        else:
+            return False
     if prioridade_calc(lista):
         return lista
     else:
@@ -95,4 +98,5 @@ def prioridade_calc(lista):
         return False
     else:
         return True
+
 
