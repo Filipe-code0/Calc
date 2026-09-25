@@ -66,3 +66,10 @@ def test_crossed_delimiters():
     assert oc.prioridade_calc("([)]") == False
     assert oc.prioridade_calc("{[()]}") == True
     assert oc.prioridade_calc("{[(])}") == False
+
+def test_operations_basics():
+    assert oc.soma_calc([0,'+',1]) == [1]
+    assert oc.soma_calc([2,'-',1]) == [1]
+    assert oc.mul_calc([5,'*',2]) == [10]
+    assert oc.mul_calc([10,'/',2]) == [5]
+                       
